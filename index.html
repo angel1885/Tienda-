@@ -84,46 +84,48 @@
     </div>
 
     <script>
-        const productos = [
+       const productos = [
             { 
                 id: 1, 
                 name: "Yeso Whip Mix T4", 
                 price: 6599, 
                 cat: "tecnico", 
-                img: "https://images.unsplash.com/photo-1583947581924-860bda6a26df?auto=format&fit=crop&q=80&w=400",
-                desc: "1 Kg de yeso extraduro." 
+                img: "https://http2.mlstatic.com/D_NQ_NP_960527-MLV46340536417_062021-O.webp",
+                desc: "1 Kg de yeso extraduro para troqueles." 
             },
             { 
                 id: 2, 
-                name: "Guantes Ecomed Nitrilo", 
+                name: "Guantes de Nitrilo Ecomed", 
                 price: 5628, 
                 cat: "odontologo", 
-                img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400",
-                desc: "Caja de 100 unidades." 
+                img: "https://m.media-amazon.com/images/I/71Y-BfW5bXL._AC_SL1500_.jpg",
+                desc: "Caja de 100u. Alta resistencia y tacto." 
             },
             { 
                 id: 3, 
                 name: "Cera Base Bon Dent", 
                 price: 7198, 
                 cat: "tecnico", 
-                img: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=80&w=400",
-                desc: "Cera rosa para modelado." 
+                img: "https://pro-dentalsupplies.com/cdn/shop/products/baseplatewax_1024x1024.jpg?v=1548881260",
+                desc: "Cera rosa para modelado de prótesis." 
             },
             { 
                 id: 4, 
                 name: "Yeso Blanco Tipo II", 
                 price: 1800, 
                 cat: "estudiante", 
-                img: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=400",
-                desc: "Para modelos de estudio." 
+                img: "https://acdn.mitiendanube.com/stores/002/097/349/products/yeso-pariss-blanco1-e51c89076f827038e916510842851608-640-0.webp",
+                desc: "Bolsa de 1kg para modelos de estudio." 
             },
             { 
                 id: 5, 
-                name: "Acrílico Polímero", 
+                name: "Acrílico Polímero/Líquido", 
                 price: 3666, 
                 cat: "tecnico", 
-                img: "https://images.unsplash.com/photo-1612117561461-12cd278913b7?auto=format&fit=crop&q=80&w=400",
-                desc: "Frasco de 120ml." 
+                img: "https://http2.mlstatic.com/D_NQ_NP_600612-MLV44636906560_012021-O.jpg",
+                desc: "Acrílico dental de autocurado." 
+            }
+        ];
             }
         ];
 
@@ -177,7 +179,7 @@
             let message = "🦷 *PEDIDO STOCKDENTAL*%0A---------------------------%0A";
             cart.forEach(item => message += `• ${item.name} - ${item.price} Bs.%0A`);
             message += `---------------------------%0A*TOTAL: ${total.toLocaleString('es-VE')} Bs.*`;
-            window.open(`https://wa.me/584243644026?text=${message}`);
+            window.open(`https://wa.me/584243391197?text=${message}`);
         }
 
         render();
