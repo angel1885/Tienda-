@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockDental | Catálogo Oficial</title>
+    <title>StockDental | Marcas de Élite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -14,7 +14,8 @@
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); }
         .modal.active { display: flex; align-items: flex-end; }
         .modal-content { background: white; width: 100%; border-radius: 2rem 2rem 0 0; padding: 2rem; max-height: 90vh; overflow-y: auto; }
-        .payment-box { background-color: #eff6ff; border: 1px solid #dbeafe; border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; }
+        .brand-logo { filter: grayscale(100%); opacity: 0.6; transition: all 0.3s; height: 25px; }
+        .brand-logo:hover { filter: grayscale(0%); opacity: 1; }
     </style>
 </head>
 <body class="text-slate-800">
@@ -22,13 +23,20 @@
     <header class="bg-white sticky top-0 z-50 border-b border-slate-200 px-6 py-4">
         <div class="max-w-xl mx-auto flex justify-between items-center mb-4">
             <div>
-                <h1 class="text-2xl font-800 text-blue-900 tracking-tighter uppercase">Stock<span class="text-blue-500">Dental</span></h1>
-                <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">Suministros Profesionales</p>
+                <h1 class="text-2xl font-800 text-blue-900 tracking-tighter uppercase leading-none">Stock<span class="text-blue-500">Dental</span></h1>
+                <p class="text-[9px] font-bold text-slate-400 tracking-widest uppercase mt-1">Insumos y Materiales Odontológicos</p>
             </div>
             <button onclick="toggleModal('cart-modal')" class="relative p-3 bg-blue-50 rounded-2xl text-blue-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
             </button>
+        </div>
+
+        <div class="max-w-xl mx-auto flex justify-between items-center mb-6 px-2 py-3 border-y border-slate-50 overflow-hidden">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Ivoclar_Vivadent_logo.png" class="brand-logo" alt="Ivoclar">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/3M_Google_Logo.svg/1000px-3M_Google_Logo.svg.png" class="brand-logo" alt="3M">
+            <span class="text-[12px] font-black text-slate-300 italic">VITA</span>
+            <span class="text-[12px] font-black text-slate-300 italic">KULZER</span>
         </div>
 
         <div class="max-w-xl mx-auto mb-4">
@@ -51,29 +59,29 @@
 
     <div id="cart-modal" class="modal" onclick="if(event.target == this) toggleModal('cart-modal')">
         <div class="modal-content">
-            <h2 class="text-2xl font-800 text-blue-900 mb-6 uppercase">Tu Pedido</h2>
+            <h2 class="text-2xl font-800 text-blue-900 mb-6 uppercase italic">Tu Pedido</h2>
             
             <div class="space-y-3 mb-6">
                 <input type="text" id="cust-name" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-xl p-4 outline-none font-bold text-sm" placeholder="Nombre completo">
                 <input type="text" id="cust-address" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-xl p-4 outline-none font-bold text-sm" placeholder="Dirección de Consultorio">
             </div>
 
-            <div class="payment-box text-blue-900">
-                <p class="text-[10px] font-black uppercase tracking-widest mb-3 opacity-60">Datos de Pago Móvil</p>
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-blue-900">
+                <p class="text-[10px] font-black uppercase tracking-widest mb-2 opacity-60">Datos de Pago</p>
                 <p class="text-sm font-bold">V-17888104 | 0424-339.1197</p>
-                <p class="text-xs mb-3 text-blue-700">Banco Venezuela (0102) / Mercantil (0105)</p>
-                <p class="text-[10px] font-black uppercase tracking-widest mb-1 opacity-60">Binance Pay</p>
-                <p class="text-xs font-bold">laboratoriomolimed@gmail.com</p>
+                <p class="text-xs mb-3">Banco Venezuela / Mercantil</p>
+                <p class="text-[10px] font-black uppercase opacity-60">Binance Pay</p>
+                <p class="text-xs font-bold italic">laboratoriomolimed@gmail.com</p>
             </div>
 
             <div id="cart-list" class="space-y-2 mb-6"></div>
 
             <div class="border-t pt-4 mb-8 flex justify-between items-center">
-                <span class="font-bold text-slate-400 text-xs uppercase">Total Estimado</span>
+                <span class="font-bold text-slate-400 text-xs uppercase">Total</span>
                 <span id="modal-total" class="text-3xl font-black text-blue-600">0 Bs.</span>
             </div>
 
-            <button onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black shadow-lg uppercase tracking-widest">Enviar Comprobante</button>
+            <button onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black shadow-lg uppercase tracking-widest">Enviar Pedido</button>
         </div>
     </div>
 
@@ -106,7 +114,7 @@
                                     <span class="text-2xl font-black text-blue-600">${p.price.toLocaleString('es-VE')} <small class="text-xs">Bs.</small></span>
                                     <p class="text-[10px] font-bold text-slate-400 uppercase">Tasa Oficial BCV</p>
                                 </div>
-                                <div class="flex items-center bg-slate-100 rounded-xl p-1 shadow-inner border border-slate-100">
+                                <div class="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-100">
                                     <button onclick="updateQty(${p.id}, -1)" class="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-blue-600 font-bold">-</button>
                                     <span class="w-8 text-center font-bold text-blue-900">${qty}</span>
                                     <button onclick="updateQty(${p.id}, 1)" class="w-8 h-8 flex items-center justify-center bg-blue-600 rounded-lg shadow-sm text-white font-bold">+</button>
@@ -121,9 +129,7 @@
         function filterEverything() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const filtered = productos.filter(p => {
-                const mSearch = p.name.toLowerCase().includes(term);
-                const mCat = currentCat === 'Todos' || p.cat === currentCat;
-                return mSearch && mCat;
+                return p.name.toLowerCase().includes(term) && (currentCat === 'Todos' || p.cat === currentCat);
             });
             render(filtered);
         }
@@ -153,8 +159,7 @@
             let total = 0;
             list.innerHTML = "";
             Object.values(cart).forEach(item => {
-                const sub = item.price * item.qty;
-                total += sub;
+                const sub = item.price * item.qty; total += sub;
                 list.innerHTML += `<div class="flex justify-between text-sm font-bold pb-2 border-b border-slate-50">
                     <span class="text-slate-600">${item.name} (x${item.qty})</span>
                     <span class="text-blue-600">${sub.toLocaleString('es-VE')} Bs.</span>
@@ -167,7 +172,7 @@
             const name = document.getElementById('cust-name').value;
             const address = document.getElementById('cust-address').value;
             const items = Object.values(cart);
-            if(!name || !address || items.length === 0) return alert("Por favor completa los datos.");
+            if(!name || !address || items.length === 0) return alert("Completa tus datos.");
             let total = 0;
             let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${name}%0A📍 *Dirección:* ${address}%0A%0A`;
             items.forEach(i => {
