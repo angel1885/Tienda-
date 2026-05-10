@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; overflow-x: hidden; position: relative; }
-        /* MARCA DE AGUA CLÍNICA */
         body::before {
             content: ""; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg);
             width: 80%; height: 80%; background-image: url('https://img.freepik.com/vector-gratis/logotipo-dental-diseno-azul_1394-118.jpg');
@@ -24,7 +23,7 @@
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); }
         .modal.active { display: flex; align-items: flex-end; }
         .modal-content { background: white; width: 100%; border-radius: 2rem 2rem 0 0; padding: 2rem; max-height: 90vh; overflow-y: auto; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        button:disabled { background-color: #cbd5e1 !important; cursor: not-allowed; opacity: 0.7; }
     </style>
 </head>
 <body class="text-slate-800">
@@ -35,12 +34,16 @@
         <button onclick="toggleMenu()" class="self-end mb-8 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ Cerrar</button>
         <div class="space-y-6 mb-8">
             <div>
+                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">¿Quiénes Somos?</h3>
+                <p class="text-[11px] text-slate-600 leading-relaxed italic">Expertos en la distribución de insumos odontológicos de alta calidad, comprometidos con la excelencia y el servicio al profesional dental.</p>
+            </div>
+            <div>
                 <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">Misión</h3>
-                <p class="text-[11px] text-slate-600 leading-relaxed italic">Proveer soluciones integrales con materiales odontológicos de vanguardia para ser el aliado estratégico del sector dental.</p>
+                <p class="text-[11px] text-slate-600 leading-relaxed italic">Proveer soluciones integrales para ser el aliado estratégico del sector dental en Venezuela.</p>
             </div>
             <div>
                 <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">Visión</h3>
-                <p class="text-[11px] text-slate-600 leading-relaxed italic">Ser la distribuidora líder en el centro del país, reconocida por la calidad técnica y el compromiso con nuestros clientes.</p>
+                <p class="text-[11px] text-slate-600 leading-relaxed italic">Ser la distribuidora líder, reconocida por la calidad técnica y el compromiso con el cliente.</p>
             </div>
         </div>
         
@@ -78,14 +81,14 @@
         <div class="modal-content">
             <div class="flex justify-between items-center mb-6">
                 <button onclick="toggleModal('cart-modal')" class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-2 rounded-lg uppercase">← Volver</button>
-                <h2 class="text-xl font-800 text-blue-900 uppercase italic">Pedido</h2>
+                <h2 class="text-xl font-800 text-blue-900 uppercase italic">Tu Pedido</h2>
             </div>
             
             <div class="space-y-3 mb-6">
-                <input type="text" id="cust-name" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Nombre completo">
-                <input type="text" id="cust-address" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Dirección / Clínica">
+                <input type="text" id="cust-name" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Nombre completo">
+                <input type="text" id="cust-address" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Dirección / Clínica">
                 
-                <select id="delivery-zone" onchange="updateCartList()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none">
+                <select id="delivery-zone" onchange="updateCartList(); validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none">
                     <option value="none">Seleccionar Delivery</option>
                     <option value="3">Maracay (+3$)</option>
                     <option value="4">Turmero (+4$)</option>
@@ -94,29 +97,28 @@
                 </select>
 
                 <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-5 space-y-3">
-                    <p class="text-[11px] text-blue-900 font-black text-center uppercase tracking-tighter">PAGO MÓVIL: V-17888104 | 0424-339.1197</p>
+                    <p class="text-[11px] text-blue-900 font-black text-center uppercase tracking-tighter italic">PAGO MÓVIL: V-17888104 | 0424-339.1197</p>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" id="pay-bank" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
-                        <input type="text" id="pay-ref" placeholder="Últimos 4 Ref." class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
+                        <input type="text" id="pay-bank" oninput="validateForm()" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
+                        <input type="text" id="pay-ref" oninput="validateForm()" placeholder="Últimos 4 Ref." class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
                     </div>
-                    <input type="number" id="pay-amount" placeholder="Monto Transferido en Bs." class="w-full bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
+                    <input type="number" id="pay-amount" oninput="validateForm()" placeholder="Monto Transferido en Bs." class="w-full bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
                 </div>
             </div>
 
             <div id="cart-list" class="space-y-2 mb-6"></div>
             <div class="border-t pt-5 mb-8 flex justify-between items-center">
-                <span class="font-bold text-slate-400 text-xs uppercase italic">Total</span>
+                <span class="font-bold text-slate-400 text-xs uppercase">Total Final</span>
                 <span id="modal-total" class="text-3xl font-black text-blue-600">0 Bs.</span>
             </div>
-            <button onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl italic transition-all active:scale-95">Confirmar WhatsApp</button>
+            <button id="btn-whatsapp" disabled onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl italic transition-all">Confirmar WhatsApp</button>
         </div>
     </div>
 
     <script>
-        const tasaActual = 65.00; // Tasa USDT (Binance) - Cambiar solo aquí diariamente
-        const margenVenta = 0.20; // 20% de ganancia
+        const tasaActual = 65.00; 
+        const margenVenta = 0.20;
 
-        // AQUI DEFINIMOS LOS COSTOS BASE EN USDT (Punto 1 corregido)
         const productos = [
             { id: 1, name: "Yeso WhipMix T4", costoUSDT: 11, img: "img/yeso-t4.jpg.jpeg", cat: "Técnicos", ficha: "Yeso tipo IV de alta resistencia." },
             { id: 2, name: "Guantes de Nitrilo", costoUSDT: 10, img: "img/guantes.jpg.jpeg", cat: "Odontólogo", ficha: "Libres de látex y polvo." },
@@ -128,10 +130,8 @@
         let cart = {};
         let currentCat = 'Todos';
 
-        // TU FÓRMULA DE CÁLCULO MEJORADA
         function calcularPrecioVentaBs(costoUSDT) { 
-            const pvpUSDT = costoUSDT / (1 - margenVenta); // Primero sacamos el valor de venta en dólares
-            return pvpUSDT * tasaActual; // Luego multiplicamos por la tasa del día
+            return (costoUSDT / (1 - margenVenta)) * tasaActual; 
         }
 
         function render() {
@@ -139,17 +139,17 @@
             container.innerHTML = "";
             const filtered = productos.filter(p => currentCat === 'Todos' || p.cat === currentCat);
             filtered.forEach(p => {
-                const precioFinalBs = calcularPrecioVentaBs(p.costoUSDT);
+                const precio = calcularPrecioVentaBs(p.costoUSDT);
                 const qty = cart[p.id] ? cart[p.id].qty : 0;
                 container.innerHTML += `
                     <div class="product-card p-6">
-                        <img src="${p.img}" class="h-44 w-full object-contain mb-4" onerror="this.src='https://placehold.co/400x400?text=StockDental'">
+                        <img src="${p.img}" class="h-44 w-full object-contain mb-4">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-lg font-bold text-blue-900 leading-tight">${p.name}</h3>
-                            <button onclick="alert('FICHA TÉCNICA: ${p.ficha}')" class="text-blue-500 bg-blue-50 px-2 py-1 rounded-md text-[8px] font-black uppercase tracking-tighter">Ficha Técnica</button>
+                            <button onclick="alert('FICHA TÉCNICA: ${p.ficha}')" class="text-blue-500 bg-blue-50 px-2 py-1 rounded-md text-[8px] font-black uppercase">Ficha Técnica</button>
                         </div>
                         <div class="flex justify-between items-end mt-4">
-                            <span class="text-2xl font-black text-blue-600">${precioFinalBs.toLocaleString('es-VE')} <small class="text-xs">Bs.</small></span>
+                            <span class="text-2xl font-black text-blue-600">${precio.toLocaleString('es-VE')} <small class="text-xs">Bs.</small></span>
                             <div class="flex items-center bg-slate-100 rounded-2xl p-1">
                                 <button onclick="updateQty(${p.id}, -1)" class="w-8 h-8 bg-white rounded-xl shadow-sm text-blue-600 font-bold">-</button>
                                 <span class="w-8 text-center font-bold">${qty}</span>
@@ -160,22 +160,34 @@
             });
         }
 
+        function validateForm() {
+            const name = document.getElementById('cust-name').value;
+            const bank = document.getElementById('pay-bank').value;
+            const ref = document.getElementById('pay-ref').value;
+            const amount = document.getElementById('pay-amount').value;
+            const zone = document.getElementById('delivery-zone').value;
+            const btn = document.getElementById('btn-whatsapp');
+            
+            const isValid = name.length > 3 && bank.length > 2 && ref.length >= 4 && amount > 0 && zone !== 'none' && Object.keys(cart).length > 0;
+            btn.disabled = !isValid;
+        }
+
         function updateQty(id, delta) {
             if (!cart[id]) { const p = productos.find(x => x.id === id); cart[id] = { ...p, qty: 0 }; }
             cart[id].qty += delta;
             if (cart[id].qty <= 0) delete cart[id];
             document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0);
             render();
+            validateForm();
             if(document.getElementById('cart-modal').classList.contains('active')) updateCartList();
         }
 
-        function removeItem(id) { delete cart[id]; document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0); updateCartList(); render(); }
+        function removeItem(id) { delete cart[id]; document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0); updateCartList(); render(); validateForm(); }
 
         function updateCartList() {
             const list = document.getElementById('cart-list');
             const zone = document.getElementById('delivery-zone');
             let total = 0;
-            
             list.innerHTML = Object.values(cart).map(i => {
                 const sub = calcularPrecioVentaBs(i.costoUSDT) * i.qty;
                 total += sub;
@@ -185,10 +197,8 @@
                 </div>`;
             }).join('');
             
-            const shippingCostUSD = (zone.value !== "none" && zone.value !== "0") ? parseFloat(zone.value) : 0;
-            const shippingBs = shippingCostUSD * tasaActual;
-            
-            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 pt-2 uppercase italic"><span>Envío: ${zone.options[zone.selectedIndex].text}</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
+            const shippingBs = (zone.value !== "none") ? parseFloat(zone.value) * tasaActual : 0;
+            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 pt-2 uppercase"><span>Envío: ${zone.options[zone.selectedIndex].text}</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
             
             document.getElementById('modal-total').innerText = (total + shippingBs).toLocaleString('es-VE') + " Bs.";
         }
@@ -202,11 +212,9 @@
             const b = document.getElementById('pay-bank').value;
             const r = document.getElementById('pay-ref').value;
             const m = document.getElementById('pay-amount').value;
-            if(!n || !b || !r || !m || Object.keys(cart).length === 0) return alert("Por favor completa todos los datos de pedido y pago.");
-            
             let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${n}%0A💰 *Pago:* ${b} | Ref: ${r} | Monto: ${m} Bs.%0A%0A`;
             Object.values(cart).forEach(i => msg += `• ${i.name} (x${i.qty})%0A`);
-            msg += `%0A*TOTAL A PAGAR:* ${document.getElementById('modal-total').innerText}`;
+            msg += `%0A*TOTAL:* ${document.getElementById('modal-total').innerText}`;
             window.open(`https://wa.me/584243391197?text=${msg}`);
         }
         render();
