@@ -7,8 +7,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
-        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc; 
+            overflow-x: hidden; 
+            position: relative;
+        }
+        /* EFECTO MARCA DE AGUA AL FONDO */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            width: 80%;
+            height: 80%;
+            background-image: url('https://img.freepik.com/vector-gratis/logotipo-dental-diseno-azul_1394-118.jpg'); /* Logo genérico de respaldo, luego pondremos el tuyo */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.03; /* Muy sutil para que no moleste la lectura */
+            z-index: -1;
+            pointer-events: none;
+        }
+        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; z-index: 1; }
         .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: white; z-index: 200; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
         .sidebar.active { left: 0; }
         .overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 150; backdrop-filter: blur(4px); }
@@ -66,7 +88,12 @@
     <header class="bg-white sticky top-0 z-50 border-b border-slate-200 px-6 py-4">
         <div class="max-w-xl mx-auto flex justify-between items-center mb-4">
             <button onclick="toggleMenu()" class="bg-slate-100 p-3 rounded-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
-            <h1 class="text-xl font-800 text-blue-900 uppercase leading-none">Stock<span class="text-blue-500">Dental</span><br><span class="text-[8px] tracking-[0.3em] text-slate-400 italic">Insumos Profesionales</span></h1>
+            
+            <div class="text-center">
+                <h1 class="text-xl font-800 text-blue-900 uppercase leading-none">Stock<span class="text-blue-500">Dental</span></h1>
+                <p class="text-[7px] tracking-[0.1em] text-slate-400 italic uppercase font-bold mt-1">Insumos y Materiales Odontológicos</p>
+            </div>
+
             <button onclick="toggleModal('cart-modal')" class="relative p-3 bg-blue-600 rounded-2xl text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
