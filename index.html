@@ -3,75 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockDental | Operaciones</title>
+    <title>StockDental | Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; overflow-x: hidden; position: relative; }
-        body::before {
-            content: ""; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg);
-            width: 80%; height: 80%; background-image: url('https://img.freepik.com/vector-gratis/logotipo-dental-diseno-azul_1394-118.jpg');
-            background-repeat: no-repeat; background-position: center; background-size: contain; opacity: 0.04; z-index: -1; pointer-events: none;
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f1f5f9; 
+            overflow-x: hidden; 
+            position: relative;
         }
-        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: white; z-index: 200; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
+
+        /* FONDO CLÍNICO ASEGURADO (Pattern CSS) */
+        .medical-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image:  radial-gradient(#2563eb 0.5px, transparent 0.5px), radial-gradient(#2563eb 0.5px, #f1f5f9 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0,10px 10px;
+        }
+
+        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+        
+        /* ESTILO DEL LOGO "GORDITO" Y GRANDE */
+        .brand-name {
+            font-weight: 900;
+            font-size: 1.8rem;
+            letter-spacing: -0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: white; z-index: 200; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 20px 0 50px rgba(0,0,0,0.1); }
         .sidebar.active { left: 0; }
-        .overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 150; backdrop-filter: blur(4px); }
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); z-index: 150; backdrop-filter: blur(8px); }
         .overlay.active { display: block; }
-        .category-btn { transition: all 0.2s; border: 2px solid #e2e8f0; white-space: nowrap; background: white; font-weight: 800; font-size: 11px; text-transform: uppercase; }
-        .category-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(8px); }
-        .modal.active { display: flex; align-items: flex-end; }
-        .modal-content { background: white; width: 100%; border-radius: 2rem 2rem 0 0; padding: 2rem; max-height: 90vh; overflow-y: auto; }
-        button:disabled { background-color: #cbd5e1 !important; cursor: not-allowed; opacity: 0.7; }
+        
+        button:disabled { background-color: #e2e8f0 !important; color: #94a3b8 !important; cursor: not-allowed; transform: scale(1) !important; }
     </style>
 </head>
 <body class="text-slate-800">
 
+    <div class="medical-bg"></div>
     <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
     
     <div id="sidebar" class="sidebar p-8 flex flex-col overflow-y-auto">
-        <button onclick="toggleMenu()" class="self-end mb-8 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ Cerrar</button>
+        <button onclick="toggleMenu()" class="self-end mb-8 text-slate-400 font-bold uppercase text-[10px] bg-slate-100 px-3 py-2 rounded-lg">✕ Cerrar</button>
         <div class="space-y-6 mb-8">
             <div>
-                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">¿Quiénes Somos?</h3>
+                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic border-b pb-1">¿Quiénes Somos?</h3>
                 <p class="text-[11px] text-slate-600 leading-relaxed italic">Expertos en la distribución de insumos odontológicos de alta calidad, comprometidos con la excelencia y el servicio al profesional dental.</p>
             </div>
             <div>
-                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">Misión</h3>
+                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic border-b pb-1">Misión</h3>
                 <p class="text-[11px] text-slate-600 leading-relaxed italic">Proveer soluciones integrales para ser el aliado estratégico del sector dental en Venezuela.</p>
             </div>
             <div>
-                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic">Visión</h3>
+                <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-2 italic border-b pb-1">Visión</h3>
                 <p class="text-[11px] text-slate-600 leading-relaxed italic">Ser la distribuidora líder, reconocida por la calidad técnica y el compromiso con el cliente.</p>
             </div>
         </div>
         
         <div class="mt-auto pt-6 text-center border-t border-slate-100">
             <h3 class="text-slate-400 font-black text-[9px] uppercase mb-3 italic tracking-widest">Aliados Comerciales</h3>
-            <button onclick="window.open('https://wa.me/584243391197')" class="w-full bg-blue-900 text-white p-5 rounded-2xl font-black text-[10px] uppercase shadow-xl leading-tight">
-                Solicitar Servicios de<br>Laboratorio Dental
+            <button onclick="window.open('https://wa.me/584243391197?text=Hola,%20vengo%20de%20la%20web%20y%20deseo%20solicitar%20servicios%20del%20Laboratorio%20Dental%20Especializado%20Ángel%20Molina')" class="w-full bg-blue-900 text-white p-5 rounded-2xl font-black text-[10px] uppercase shadow-xl leading-tight hover:bg-blue-800 transition-colors">
+                Solicitar Servicios de<br>Laboratorio Dental Especializado<br>Ángel Molina
             </button>
         </div>
     </div>
 
-    <header class="bg-white sticky top-0 z-50 border-b border-slate-200 px-6 py-4">
-        <div class="max-w-xl mx-auto flex justify-between items-center mb-4">
-            <button onclick="toggleMenu()" class="bg-slate-100 p-3 rounded-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 px-6 py-5">
+        <div class="max-w-xl mx-auto flex justify-between items-center mb-5">
+            <button onclick="toggleMenu()" class="bg-blue-50 p-3 rounded-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+            
             <div class="text-center">
-                <h1 class="text-xl font-800 text-blue-900 uppercase leading-none">Stock<span class="text-blue-500">Dental</span></h1>
-                <p class="text-[7px] tracking-[0.1em] text-slate-400 italic uppercase font-bold mt-1">Insumos y Materiales Odontológicos</p>
+                <div class="brand-name text-blue-900">
+                    <svg class="w-7 h-7 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6Z" /></svg>
+                    <span>STOCK<span class="text-blue-500">DENTAL</span></span>
+                </div>
+                <p class="text-[8px] tracking-[0.2em] text-slate-400 italic uppercase font-black">Insumos y Materiales Odontológicos</p>
             </div>
-            <button onclick="toggleModal('cart-modal')" class="relative p-3 bg-blue-600 rounded-2xl text-white">
+
+            <button onclick="toggleModal('cart-modal')" class="relative p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
             </button>
         </div>
+        
         <div class="max-w-xl mx-auto flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-            <button onclick="setCategory('Todos', this)" class="category-btn active px-5 py-2.5 rounded-xl">Todos</button>
-            <button onclick="setCategory('Odontólogo', this)" class="category-btn px-5 py-2.5 rounded-xl">Odontólogo</button>
-            <button onclick="setCategory('Estudiantes', this)" class="category-btn px-5 py-2.5 rounded-xl">Estudiantes</button>
-            <button onclick="setCategory('Técnicos', this)" class="category-btn px-5 py-2.5 rounded-xl">Técnicos</button>
+            <button onclick="setCategory('Todos', this)" class="category-btn active px-6 py-3 rounded-2xl">Todos</button>
+            <button onclick="setCategory('Odontólogo', this)" class="category-btn px-6 py-3 rounded-2xl">Odontólogos</button>
+            <button onclick="setCategory('Estudiantes', this)" class="category-btn px-6 py-3 rounded-2xl">Estudiantes</button>
+            <button onclick="setCategory('Técnicos', this)" class="category-btn px-6 py-3 rounded-2xl">Técnicos</button>
         </div>
     </header>
 
@@ -80,38 +109,45 @@
     <div id="cart-modal" class="modal" onclick="if(event.target == this) toggleModal('cart-modal')">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-6">
-                <button onclick="toggleModal('cart-modal')" class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-2 rounded-lg uppercase">← Volver</button>
-                <h2 class="text-xl font-800 text-blue-900 uppercase italic">Tu Pedido</h2>
+                <button onclick="toggleModal('cart-modal')" class="text-[10px] font-black text-blue-600 bg-blue-50 px-3 py-2 rounded-lg uppercase">← Seguir</button>
+                <h2 class="text-xl font-900 text-blue-900 uppercase italic tracking-tighter">Confirmar Pedido</h2>
             </div>
             
             <div class="space-y-3 mb-6">
-                <input type="text" id="cust-name" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Nombre completo">
-                <input type="text" id="cust-address" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Dirección / Clínica">
+                <input type="text" id="cust-name" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none transition-all" placeholder="Nombre completo">
+                <input type="text" id="cust-address" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none transition-all" placeholder="Dirección / Clínica de entrega">
                 
                 <select id="delivery-zone" onchange="updateCartList(); validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none">
-                    <option value="none">Seleccionar Delivery</option>
+                    <option value="none">Seleccionar Zona de Delivery</option>
                     <option value="3">Maracay (+3$)</option>
                     <option value="4">Turmero (+4$)</option>
                     <option value="5">Cagua (+5$)</option>
-                    <option value="0">MRW (Cobro Destino)</option>
+                    <option value="0">MRW / Zoom (Cobro Destino)</option>
                 </select>
 
-                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-5 space-y-3">
-                    <p class="text-[11px] text-blue-900 font-black text-center uppercase tracking-tighter italic">PAGO MÓVIL: V-17888104 | 0424-339.1197</p>
+                <div class="bg-blue-50 border-2 border-blue-100 rounded-3xl p-5 space-y-4">
+                    <p class="text-[10px] text-blue-900 font-black text-center uppercase tracking-widest italic border-b border-blue-200 pb-2">Datos de Pago Móvil</p>
+                    <p class="text-[12px] font-bold text-center text-blue-700">V-17888104 | 0424-339.1197 <br> <span class="text-[10px] text-slate-500 italic">Venezuela (0102) / Mercantil (0105)</span></p>
+                    
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" id="pay-bank" oninput="validateForm()" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
-                        <input type="text" id="pay-ref" oninput="validateForm()" placeholder="Últimos 4 Ref." class="bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
+                        <input type="text" id="pay-bank" oninput="validateForm()" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-[11px] font-bold border-none shadow-sm outline-none">
+                        <input type="text" id="pay-ref" oninput="validateForm()" placeholder="Ref. 4 dígitos" class="bg-white p-3 rounded-xl text-[11px] font-bold border-none shadow-sm outline-none">
                     </div>
-                    <input type="number" id="pay-amount" oninput="validateForm()" placeholder="Monto Transferido en Bs." class="w-full bg-white p-3 rounded-xl text-[11px] font-bold border border-blue-100">
+                    <input type="number" id="pay-amount" oninput="validateForm()" placeholder="Monto exacto transferido en Bs." class="w-full bg-white p-3 rounded-xl text-[11px] font-bold border-none shadow-sm outline-none">
                 </div>
             </div>
 
-            <div id="cart-list" class="space-y-2 mb-6"></div>
+            <div id="cart-list" class="space-y-2 mb-6 max-h-40 overflow-y-auto pr-2"></div>
+            
             <div class="border-t pt-5 mb-8 flex justify-between items-center">
-                <span class="font-bold text-slate-400 text-xs uppercase">Total Final</span>
+                <span class="font-bold text-slate-400 text-xs uppercase">Total a pagar</span>
                 <span id="modal-total" class="text-3xl font-black text-blue-600">0 Bs.</span>
             </div>
-            <button id="btn-whatsapp" disabled onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl italic transition-all">Confirmar WhatsApp</button>
+            
+            <button id="btn-whatsapp" disabled onclick="sendWhatsApp()" class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl italic transition-all active:scale-95 flex justify-center items-center gap-2">
+                <span>Enviar a WhatsApp</span>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.63C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.66 20.15 9.3 19.8 8.1 19.14L7.81 18.97L4.65 19.8L5.48 16.71L5.29 16.41C4.56 15.25 4.18 13.92 4.18 12.56C4.18 11.92 4.18 11.91 4.18 11.91C4.18 7.37 7.71 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7.02 8.48 7.02 9.69C7.02 10.9 7.9 12.06 8.02 12.23C8.15 12.4 9.74 14.86 12.19 15.91C12.77 16.16 13.21 16.3 13.57 16.42C14.15 16.6 14.68 16.58 15.1 16.51C15.56 16.44 16.53 15.93 16.73 15.36C16.94 14.79 16.94 14.3 16.88 14.2C16.82 14.11 16.63 14.05 16.34 13.91C16.05 13.77 14.63 13.07 14.36 12.97C14.1 12.87 13.91 12.82 13.72 13.11C13.53 13.39 12.98 14.05 12.82 14.23C12.65 14.41 12.49 14.44 12.2 14.3C11.91 14.16 10.97 13.85 9.85 12.85C8.98 12.07 8.39 11.11 8.22 10.82C8.05 10.53 8.2 10.37 8.35 10.22C8.48 10.1 8.63 9.9 8.78 9.72C8.92 9.55 8.98 9.43 9.08 9.23C9.17 9.03 9.13 8.86 9.07 8.72C9.01 8.58 8.69 7.8 8.53 7.33Z" /></svg>
+            </button>
         </div>
     </div>
 
@@ -143,16 +179,16 @@
                 const qty = cart[p.id] ? cart[p.id].qty : 0;
                 container.innerHTML += `
                     <div class="product-card p-6">
-                        <img src="${p.img}" class="h-44 w-full object-contain mb-4">
+                        <img src="${p.img}" class="h-44 w-full object-contain mb-4" onerror="this.src='https://placehold.co/400x400/2563eb/ffffff?text=STOCK+DENTAL'">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-blue-900 leading-tight">${p.name}</h3>
-                            <button onclick="alert('FICHA TÉCNICA: ${p.ficha}')" class="text-blue-500 bg-blue-50 px-2 py-1 rounded-md text-[8px] font-black uppercase">Ficha Técnica</button>
+                            <h3 class="text-lg font-black text-blue-900 leading-tight">${p.name}</h3>
+                            <button onclick="alert('FICHA TÉCNICA: ${p.ficha}')" class="text-blue-500 bg-blue-50 px-2 py-1 rounded-md text-[8px] font-black uppercase tracking-tighter">Ficha Técnica</button>
                         </div>
                         <div class="flex justify-between items-end mt-4">
-                            <span class="text-2xl font-black text-blue-600">${precio.toLocaleString('es-VE')} <small class="text-xs">Bs.</small></span>
-                            <div class="flex items-center bg-slate-100 rounded-2xl p-1">
+                            <span class="text-2xl font-black text-blue-600">${precio.toLocaleString('es-VE')} <small class="text-[10px]">Bs.</small></span>
+                            <div class="flex items-center bg-slate-100 rounded-2xl p-1 shadow-inner">
                                 <button onclick="updateQty(${p.id}, -1)" class="w-8 h-8 bg-white rounded-xl shadow-sm text-blue-600 font-bold">-</button>
-                                <span class="w-8 text-center font-bold">${qty}</span>
+                                <span class="w-8 text-center font-bold text-sm">${qty}</span>
                                 <button onclick="updateQty(${p.id}, 1)" class="w-8 h-8 bg-blue-600 rounded-xl text-white font-bold">+</button>
                             </div>
                         </div>
@@ -161,14 +197,14 @@
         }
 
         function validateForm() {
-            const name = document.getElementById('cust-name').value;
-            const bank = document.getElementById('pay-bank').value;
-            const ref = document.getElementById('pay-ref').value;
+            const name = document.getElementById('cust-name').value.trim();
+            const bank = document.getElementById('pay-bank').value.trim();
+            const ref = document.getElementById('pay-ref').value.trim();
             const amount = document.getElementById('pay-amount').value;
             const zone = document.getElementById('delivery-zone').value;
             const btn = document.getElementById('btn-whatsapp');
             
-            const isValid = name.length > 3 && bank.length > 2 && ref.length >= 4 && amount > 0 && zone !== 'none' && Object.keys(cart).length > 0;
+            const isValid = name.length > 5 && bank.length > 2 && ref.length >= 4 && amount > 0 && zone !== 'none' && Object.keys(cart).length > 0;
             btn.disabled = !isValid;
         }
 
@@ -191,14 +227,14 @@
             list.innerHTML = Object.values(cart).map(i => {
                 const sub = calcularPrecioVentaBs(i.costoUSDT) * i.qty;
                 total += sub;
-                return `<div class="flex justify-between items-center text-[11px] font-bold border-b border-slate-50 pb-2">
+                return `<div class="flex justify-between items-center text-[11px] font-bold border-b border-slate-100 pb-2 mb-2">
                     <div class="flex items-center gap-2"><button onclick="removeItem(${i.id})" class="text-red-500 bg-red-50 p-1 rounded-md">✕</button><span>${i.name} (x${i.qty})</span></div>
                     <span>${sub.toLocaleString('es-VE')} Bs.</span>
                 </div>`;
             }).join('');
             
             const shippingBs = (zone.value !== "none") ? parseFloat(zone.value) * tasaActual : 0;
-            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 pt-2 uppercase"><span>Envío: ${zone.options[zone.selectedIndex].text}</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
+            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 pt-2 uppercase"><span>+ Envío (${zone.options[zone.selectedIndex].text})</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
             
             document.getElementById('modal-total').innerText = (total + shippingBs).toLocaleString('es-VE') + " Bs.";
         }
@@ -212,9 +248,11 @@
             const b = document.getElementById('pay-bank').value;
             const r = document.getElementById('pay-ref').value;
             const m = document.getElementById('pay-amount').value;
-            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${n}%0A💰 *Pago:* ${b} | Ref: ${r} | Monto: ${m} Bs.%0A%0A`;
+            const z = document.getElementById('delivery-zone').options[document.getElementById('delivery-zone').selectedIndex].text;
+            
+            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${n}%0A📍 *Envío:* ${z}%0A💰 *Pago:* ${b} | Ref: ${r} | Monto: ${m} Bs.%0A%0A*PRODUCTOS:*%0A`;
             Object.values(cart).forEach(i => msg += `• ${i.name} (x${i.qty})%0A`);
-            msg += `%0A*TOTAL:* ${document.getElementById('modal-total').innerText}`;
+            msg += `%0A*TOTAL FINAL:* ${document.getElementById('modal-total').innerText}`;
             window.open(`https://wa.me/584243391197?text=${msg}`);
         }
         render();
