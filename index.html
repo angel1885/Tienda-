@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
-        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .product-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: white; z-index: 200; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
         .sidebar.active { left: 0; }
         .overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 150; backdrop-filter: blur(4px); }
@@ -24,27 +24,57 @@
 <body class="text-slate-800">
 
     <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
-    <div id="sidebar" class="sidebar p-8 flex flex-col">
-        <button onclick="toggleMenu()" class="self-end mb-10 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ Cerrar</button>
-        <div class="mb-10 text-sm text-slate-600 font-semibold italic uppercase text-[11px]">Aliado en materiales odontológicos y prótesis de alta precisión.</div>
-        <button onclick="solicitarServicio()" class="w-full bg-blue-900 text-white p-5 rounded-2xl font-black text-xs uppercase shadow-xl">🚀 SERVICIOS DE LABORATORIO</button>
+    
+    <div id="sidebar" class="sidebar p-8 flex flex-col overflow-y-auto">
+        <button onclick="toggleMenu()" class="self-end mb-8 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ Cerrar</button>
+        
+        <div class="mb-8">
+            <h3 class="text-blue-600 font-black text-[10px] uppercase tracking-widest mb-4 italic">Nuestra Empresa</h3>
+            <div class="space-y-5">
+                <div>
+                    <h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">¿Quiénes Somos?</h4>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Expertos en distribución de insumos odontológicos y prótesis dentales de alta precisión.</p>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">Misión</h4>
+                        <p class="text-[11px] text-slate-600 leading-relaxed">Proveer soluciones integrales con materiales de vanguardia y servicios de máxima calidad.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">Visión</h4>
+                        <p class="text-[11px] text-slate-600 leading-relaxed">Ser el aliado estratégico número uno en el centro del país.</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">Ubicación</h4>
+                    <p class="text-[11px] text-slate-600 font-bold italic underline decoration-blue-200">📍 Maracay, Estado Aragua.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-auto pt-8 border-t border-slate-100">
+            <div class="text-center mb-4">
+                <h3 class="text-slate-400 font-black text-[10px] uppercase tracking-widest mb-1 italic">Aliados Comerciales</h3>
+                <p class="text-[9px] text-slate-400 font-bold uppercase">Potenciamos tu consultorio</p>
+            </div>
+            <button onclick="solicitarServicio()" class="w-full bg-blue-900 text-white p-5 rounded-2xl font-black text-[10px] uppercase shadow-xl active:scale-95 transition-all">
+                🚀 SOLICITAR SERVICIO DE<br>LABORATORIO DENTAL
+            </button>
+        </div>
     </div>
 
     <header class="bg-white sticky top-0 z-50 border-b border-slate-200 px-6 py-4">
         <div class="max-w-xl mx-auto flex justify-between items-center mb-4">
             <button onclick="toggleMenu()" class="bg-slate-100 p-3 rounded-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
-            <h1 class="text-xl font-800 text-blue-900 uppercase">Stock<span class="text-blue-500">Dental</span></h1>
+            <h1 class="text-xl font-800 text-blue-900 uppercase leading-none">Stock<span class="text-blue-500">Dental</span><br><span class="text-[8px] tracking-[0.3em] text-slate-400 italic">Insumos Profesionales</span></h1>
             <button onclick="toggleModal('cart-modal')" class="relative p-3 bg-blue-600 rounded-2xl text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
             </button>
         </div>
         
-        <div class="max-w-xl mx-auto flex justify-between items-center mb-6 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100">
-            <span class="text-[12px] font-black text-slate-400 italic opacity-60">ivoclar</span>
-            <span class="text-[12px] font-black text-red-500 italic opacity-60">3M</span>
-            <span class="text-[12px] font-black text-slate-400 italic opacity-60" style="font-family:serif">VITA</span>
-            <span class="text-[12px] font-black text-slate-400 italic opacity-60">KULZER</span>
+        <div class="max-w-xl mx-auto flex justify-between items-center mb-6 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 italic opacity-60 font-black text-[11px] text-slate-400">
+            <span>ivoclar</span><span class="text-red-500">3M</span><span style="font-family:serif">VITA</span><span>KULZER</span>
         </div>
 
         <div class="max-w-xl mx-auto flex gap-2 overflow-x-auto pb-2 no-scrollbar">
@@ -62,7 +92,7 @@
             <h2 class="text-2xl font-800 text-blue-900 mb-6 uppercase italic">Finalizar Pedido</h2>
             <div class="space-y-4 mb-6">
                 <input type="text" id="cust-name" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Nombre completo">
-                
+                <input type="text" id="cust-address" oninput="validateForm()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none" placeholder="Dirección de Entrega / Clínica">
                 <select id="delivery-zone" onchange="updateCartList()" class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 rounded-2xl p-4 font-bold text-sm outline-none">
                     <option value="none">Seleccionar Zona de Envío</option>
                     <option value="3">Maracay (+3$)</option>
@@ -71,17 +101,15 @@
                     <option value="6">La Victoria (+6$)</option>
                     <option value="0">MRW (Cobro en Destino)</option>
                 </select>
-
                 <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-5 space-y-3">
-                    <p class="text-[10px] text-blue-800 font-black text-center uppercase italic">Datos de Pago Móvil: V-17888104</p>
+                    <p class="text-[10px] text-blue-800 font-black text-center uppercase italic">V-17888104 | 0424-339.1197</p>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" id="pay-bank" oninput="validateForm()" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-xs font-bold outline-none border border-blue-100">
-                        <input type="text" id="pay-ref" oninput="validateForm()" placeholder="Últimos 4 Ref." class="bg-white p-3 rounded-xl text-xs font-bold outline-none border border-blue-100">
+                        <input type="text" id="pay-bank" oninput="validateForm()" placeholder="Banco Origen" class="bg-white p-3 rounded-xl text-xs font-bold border border-blue-100 outline-none">
+                        <input type="text" id="pay-ref" oninput="validateForm()" placeholder="Últimos 4 Ref." class="bg-white p-3 rounded-xl text-xs font-bold border border-blue-100 outline-none">
                     </div>
-                    <input type="number" id="pay-amount" oninput="validateForm()" placeholder="Monto Exacto en Bs." class="w-full bg-white p-3 rounded-xl text-xs font-bold outline-none border border-blue-100">
+                    <input type="number" id="pay-amount" oninput="validateForm()" placeholder="Monto en Bs." class="w-full bg-white p-3 rounded-xl text-xs font-bold border border-blue-100 outline-none">
                 </div>
             </div>
-
             <div id="cart-list" class="space-y-2 mb-6"></div>
             <div class="border-t pt-5 mb-8 flex justify-between items-center">
                 <span class="font-bold text-slate-400 text-xs uppercase italic">Total Final</span>
@@ -92,28 +120,24 @@
     </div>
 
     <script>
-        // --- PARÁMETROS DE NEGOCIO (SOCIO: AJUSTA ESTO DIARIO) ---
-        const tasaBCV = 50.00;    // Tasa oficial (la que ve el cliente)
-        const tasaUSDT = 65.00;   // Tasa interna (Binance/Reposición)
-        const margenDeseado = 0.20; // 20% de Margen Real
+        const tasaBCV = 52.30;   
+        const tasaUSDT = 65.00;  
+        const margenDeseado = 0.20; 
 
         const productos = [
-            { id: 1, name: "Yeso WhipMix T4", costoUSD: 11, img: "img/yeso-t4.jpg.jpeg", cat: "Técnicos", ficha: "Yeso tipo IV." },
-            { id: 2, name: "Guantes de Nitrilo", costoUSD: 10, img: "img/guantes.jpg.jpeg", cat: "Odontólogo", ficha: "Libres de látex." },
-            { id: 3, name: "Acrílico Líquido", costoUSD: 8, img: "img/acrilico.jpg.jpeg", cat: "Técnicos", ficha: "Monómero estable." }
+            { id: 1, name: "Yeso WhipMix T4", costoUSD: 11, img: "img/yeso-t4.jpg.jpeg", cat: "Técnicos", ficha: "Yeso tipo IV de alta resistencia y mínima expansión." },
+            { id: 2, name: "Guantes de Nitrilo", costoUSD: 10, img: "img/guantes.jpg.jpeg", cat: "Odontólogo", ficha: "Libres de látex y polvo, alta sensibilidad táctil." },
+            { id: 3, name: "Acrílico Líquido", costoUSD: 8, img: "img/acrilico.jpg.jpeg", cat: "Técnicos", ficha: "Monómero de termocurado, estabilidad de color." },
+            { id: 4, name: "Cera Base Tropical", costoUSD: 9, img: "img/cera-base.jpg.jpeg", cat: "Estudiantes", ficha: "Fórmula para climas cálidos, no se deforma." },
+            { id: 5, name: "Yeso Blanco", costoUSD: 5, img: "img/yeso-blanco.jpg.jpeg", cat: "Estudiantes", ficha: "Yeso tipo II para modelos de estudio y laboratorio." }
         ];
 
         let cart = {};
         let currentCat = 'Todos';
 
-        // LÓGICA DE CÁLCULO PROFESIONAL
         function calcularPrecioBs(costo) {
-            // 1. Precio en USDT con Margen Real (Costo / (1-margen))
             const precioVentaUSDT = costo / (1 - margenDeseado);
-            // 2. Factor de Ajuste entre tasas
-            const factor = tasaUSDT / tasaBCV;
-            // 3. Resultado Final en Bolívares
-            return precioVentaUSDT * tasaBCV * factor;
+            return precioVentaUSDT * tasaBCV * (tasaUSDT / tasaBCV);
         }
 
         function render(data = productos) {
@@ -125,13 +149,16 @@
                 container.innerHTML += `
                     <div class="product-card p-6">
                         <img src="${p.img}" class="h-48 w-full object-contain mb-4" onerror="this.src='https://placehold.co/400x400?text=StockDental'">
-                        <h3 class="text-lg font-bold text-blue-900">${p.name}</h3>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-blue-900 leading-tight">${p.name}</h3>
+                            <button onclick="alert('FICHA TÉCNICA: ${p.ficha}')" class="text-blue-500 bg-blue-50 px-2 py-1 rounded-md text-[9px] font-black uppercase">Ficha</button>
+                        </div>
                         <div class="flex justify-between items-end mt-4">
                             <div><span class="text-2xl font-black text-blue-600">${precioBs.toLocaleString('es-VE')} <small class="text-xs">Bs.</small></span></div>
                             <div class="flex items-center bg-slate-100 rounded-2xl p-1">
-                                <button onclick="updateQty(${p.id}, -1)" class="w-8 h-8 bg-white rounded-xl shadow-sm text-blue-600">-</button>
+                                <button onclick="updateQty(${p.id}, -1)" class="w-8 h-8 bg-white rounded-xl shadow-sm text-blue-600 font-bold">-</button>
                                 <span class="w-8 text-center font-bold">${qty}</span>
-                                <button onclick="updateQty(${p.id}, 1)" class="w-8 h-8 bg-blue-600 rounded-xl shadow-sm text-white">+</button>
+                                <button onclick="updateQty(${p.id}, 1)" class="w-8 h-8 bg-blue-600 rounded-xl shadow-sm text-white font-bold">+</button>
                             </div>
                         </div>
                     </div>`;
@@ -146,48 +173,43 @@
             render(productos.filter(p => currentCat === 'Todos' || p.cat === currentCat));
         }
 
+        function removeItem(id) {
+            delete cart[id];
+            document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0);
+            updateCartList();
+            render(productos.filter(p => currentCat === 'Todos' || p.cat === currentCat));
+        }
+
         function updateCartList() {
             const list = document.getElementById('cart-list');
             const zone = document.getElementById('delivery-zone');
             let subtotalBs = Object.values(cart).reduce((a, b) => a + (calcularPrecioBs(b.costoUSD) * b.qty), 0);
-            
-            let shippingBs = 0;
-            if (zone.value !== "none" && zone.value !== "0") {
-                // El envío se calcula a tasa USDT para cubrir el costo real del delivery
-                shippingBs = parseFloat(zone.value) * tasaUSDT;
-            }
+            let shippingBs = (zone.value !== "none" && zone.value !== "0") ? parseFloat(zone.value) * tasaUSDT : 0;
 
-            list.innerHTML = Object.values(cart).map(i => `<div class="flex justify-between text-[11px] font-bold"><span>${i.name} (x${i.qty})</span><span>${(calcularPrecioBs(i.costoUSD) * i.qty).toLocaleString('es-VE')} Bs.</span></div>`).join('');
+            list.innerHTML = Object.values(cart).map(i => `
+                <div class="flex justify-between items-center text-[11px] font-bold border-b border-slate-50 pb-2">
+                    <div class="flex items-center gap-2"><button onclick="removeItem(${i.id})" class="text-red-500 bg-red-50 p-1 rounded-md">✕</button><span>${i.name} (x${i.qty})</span></div>
+                    <span>${(calcularPrecioBs(i.costoUSD) * i.qty).toLocaleString('es-VE')} Bs.</span>
+                </div>`).join('');
             
-            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 border-t pt-2 uppercase"><span>Envío: ${zone.options[zone.selectedIndex].text}</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
-            
+            if(shippingBs > 0) list.innerHTML += `<div class="flex justify-between text-[11px] font-black text-blue-500 pt-2 uppercase"><span>Envío: ${zone.options[zone.selectedIndex].text}</span><span>${shippingBs.toLocaleString('es-VE')} Bs.</span></div>`;
             document.getElementById('modal-total').innerText = (subtotalBs + shippingBs).toLocaleString('es-VE') + " Bs.";
             validateForm();
         }
 
         function validateForm() {
             const btn = document.getElementById('btn-send');
-            const fields = [
-                document.getElementById('cust-name').value,
-                document.getElementById('pay-bank').value,
-                document.getElementById('pay-ref').value,
-                document.getElementById('pay-amount').value,
-                document.getElementById('delivery-zone').value !== "none"
-            ];
-            if(fields.every(f => f)) {
-                btn.disabled = false;
-                btn.className = "w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl active:scale-95 transition-all";
-                btn.innerText = "Confirmar en WhatsApp";
+            const fields = [document.getElementById('cust-name').value, document.getElementById('cust-address').value, document.getElementById('pay-bank').value, document.getElementById('pay-ref').value, document.getElementById('pay-amount').value, document.getElementById('delivery-zone').value !== "none"];
+            if(fields.every(f => f) && Object.keys(cart).length > 0) {
+                btn.disabled = false; btn.className = "w-full bg-blue-600 text-white py-5 rounded-2xl font-black uppercase shadow-xl"; btn.innerText = "Confirmar en WhatsApp";
             } else {
-                btn.disabled = true;
-                btn.className = "w-full bg-slate-300 text-white py-5 rounded-2xl font-black uppercase";
-                btn.innerText = "Completar Datos";
+                btn.disabled = true; btn.className = "w-full bg-slate-300 text-white py-5 rounded-2xl font-black uppercase"; btn.innerText = "Completar Datos";
             }
         }
 
         function sendWhatsApp() {
             const zone = document.getElementById('delivery-zone');
-            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A📍 *Zona:* ${zone.options[zone.selectedIndex].text}%0A%0A💰 *PAGO:* ${document.getElementById('pay-bank').value} | Ref: ${document.getElementById('pay-ref').value} | Monto: ${document.getElementById('pay-amount').value} Bs.%0A%0A📌 *Total:* ${document.getElementById('modal-total').innerText}`;
+            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A📍 *Dirección:* ${document.getElementById('cust-address').value}%0A🚚 *Zona:* ${zone.options[zone.selectedIndex].text}%0A%0A💰 *PAGO:* ${document.getElementById('pay-bank').value} | Ref: ${document.getElementById('pay-ref').value} | Monto: ${document.getElementById('pay-amount').value} Bs.%0A%0A📌 *Total:* ${document.getElementById('modal-total').innerText}`;
             window.open(`https://wa.me/584243391197?text=${msg}`);
         }
 
@@ -195,7 +217,6 @@
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); }
         function solicitarServicio() { window.open(`https://wa.me/584243391197?text=Hola! Deseo solicitar servicios de Laboratorio Dental.`); }
         function setCategory(cat, btn) { currentCat = cat; document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); render(productos.filter(p => cat === 'Todos' || p.cat === cat)); }
-        
         render();
     </script>
 </body>
