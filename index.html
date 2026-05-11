@@ -50,7 +50,8 @@
         </div>
 
         <div class="mt-auto pt-8 border-t border-slate-100 text-center">
-            <p class="text-[10px] text-blue-900 font-900 uppercase mb-1">Laboratorio Dental Especializado</p>
+            <p class="text-[9px] text-slate-400 font-black uppercase mb-2 tracking-widest">Aliado Comercial</p>
+            <p class="text-[10px] text-blue-900 font-900 uppercase mb-1 leading-tight">Laboratorio Dental Especializado</p>
             <p class="text-[11px] text-slate-400 font-bold uppercase mb-4 tracking-widest">Ángel Molina</p>
             <button onclick="window.open('https://wa.me/584243391197?text=Hola,%20deseo%20solicitar%20servicios%20del%20Laboratorio%20Dental%20Especializado%20Ángel%20Molina.')" 
                     class="w-full bg-blue-900 text-white p-4 rounded-xl font-black text-[9px] uppercase shadow-lg leading-tight">
@@ -143,16 +144,16 @@
 
     <script>
         const tasaActual = 65.00; 
-        const tasaBCV = 500.00; // Tasa Delivery 500
+        const tasaBCV = 500.00; 
         const margen = 0.20;
 
         const productos = [
-            { id: 1, name: "Yeso WhipMix T4", costoUSDT: 11, img: "img/yeso-t4.jpg.jpeg" },
-            { id: 2, name: "Guantes de Nitrilo", costoUSDT: 10, img: "img/guantes.jpg.jpeg" },
-            { id: 3, name: "Acrílico Líquido", costoUSDT: 8, img: "img/acrilico.jpg.jpeg" },
-            { id: 4, name: "Cera Base Tropical", costoUSDT: 9, img: "img/cera-base.jpg.jpeg" },
-            { id: 5, name: "Resina Compuesta", costoUSDT: 25, img: "img/resina.jpg.jpeg" },
-            { id: 6, name: "Alginato Cromático", costoUSDT: 12, img: "img/alginato.jpg.jpeg" }
+            { id: 1, name: "Yeso WhipMix T4", costoUSDT: 11, img: "img/yeso-t4.jpg.jpeg", ficha: "Ficha técnica: Alta resistencia, expansión mínima." },
+            { id: 2, name: "Guantes de Nitrilo", costoUSDT: 10, img: "img/guantes.jpg.jpeg", ficha: "Ficha técnica: Libre de látex, alta sensibilidad." },
+            { id: 3, name: "Acrílico Líquido", costoUSDT: 8, img: "img/acrilico.jpg.jpeg", ficha: "Ficha técnica: Autopolimerizable, color estable." },
+            { id: 4, name: "Cera Base Tropical", costoUSDT: 9, img: "img/cera-base.jpg.jpeg", ficha: "Ficha técnica: No se deforma con el calor ambiente." },
+            { id: 5, name: "Resina Compuesta", costoUSDT: 25, img: "img/resina.jpg.jpeg", ficha: "Ficha técnica: Nanohíbrida, alto pulido." },
+            { id: 6, name: "Alginato Cromático", costoUSDT: 12, img: "img/alginato.jpg.jpeg", ficha: "Ficha técnica: Cambio de fase por color, alta fidelidad." }
         ];
 
         let cart = {};
@@ -165,7 +166,20 @@
             container.innerHTML = "";
             productos.filter(p => p.name.toLowerCase().includes(search)).forEach(p => {
                 const qty = cart[p.id] ? cart[p.id].qty : 0;
-                container.innerHTML += `<div class="product-card p-4 flex flex-col"><img src="${p.img}" class="h-28 w-full object-contain mb-3" onerror="this.src='https://placehold.co/200x200/e2e8f0/64748b?text=FOTO'"><h3 class="text-[10px] font-bold text-slate-700 leading-tight mb-2 h-8 overflow-hidden">${p.name}</h3><div class="flex items-center justify-between mb-3"><div class="flex items-center bg-slate-100 rounded-lg p-1"><button onclick="updateQty(${p.id}, -1)" class="w-5 h-5 text-blue-500 font-bold">-</button><span class="w-6 text-center text-[10px] font-black">${qty}</span><button onclick="updateQty(${p.id}, 1)" class="w-5 h-5 text-blue-500 font-bold">+</button></div><span class="text-[10px] font-black text-blue-500">${calcularPrecio(p.costoUSDT).toLocaleString('es-VE')}</span></div></div>`;
+                container.innerHTML += `
+                <div class="product-card p-4 flex flex-col">
+                    <img src="${p.img}" class="h-28 w-full object-contain mb-3" onerror="this.src='https://placehold.co/200x200/e2e8f0/64748b?text=FOTO'">
+                    <h3 class="text-[10px] font-bold text-slate-700 leading-tight mb-2 h-8 overflow-hidden">${p.name}</h3>
+                    <p class="text-[8px] text-slate-400 italic mb-3 leading-tight">${p.ficha}</p>
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center bg-slate-100 rounded-lg p-1">
+                            <button onclick="updateQty(${p.id}, -1)" class="w-5 h-5 text-blue-500 font-bold">-</button>
+                            <span class="w-6 text-center text-[10px] font-black">${qty}</span>
+                            <button onclick="updateQty(${p.id}, 1)" class="w-5 h-5 text-blue-500 font-bold">+</button>
+                        </div>
+                        <span class="text-[10px] font-black text-blue-500">${calcularPrecio(p.costoUSDT).toLocaleString('es-VE')}</span>
+                    </div>
+                </div>`;
             });
         }
 
@@ -184,18 +198,22 @@
         }
 
         function removeItem(id) { delete cart[id]; document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0); render(); updateCartList(); validateForm(); }
+        
         function validateForm() {
             const n = document.getElementById('cust-name').value, d = document.getElementById('cust-address').value, r = document.getElementById('pay-ref').value, a = document.getElementById('pay-amount').value, z = document.getElementById('delivery-zone').value;
             document.getElementById('btn-send').disabled = !(n.length > 2 && d.length > 5 && r.length >= 3 && a > 0 && z !== 'none' && Object.keys(cart).length > 0);
         }
+
         function updateQty(id, delta) {
             if (!cart[id]) { const p = productos.find(x => x.id === id); cart[id] = { ...p, qty: 0 }; }
             cart[id].qty += delta; if (cart[id].qty <= 0) delete cart[id];
             document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0);
             render(); validateForm(); if(document.getElementById('cart-modal').classList.contains('active')) updateCartList();
         }
+
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); }
         function toggleModal(id) { document.getElementById(id).classList.toggle('active'); if(document.getElementById(id).classList.contains('active')) updateCartList(); }
+        
         function sendWhatsApp() {
             let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A💰 *Pago:* ${document.getElementById('pay-amount').value} Bs. (Ref: ${document.getElementById('pay-ref').value})%0A%0A`;
             Object.values(cart).forEach(i => msg += `• ${i.name} (x${i.qty})%0A`);
