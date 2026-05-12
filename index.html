@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockDental | Insumos Odontológicos</title>
+    <title>StockDental | El Futuro del Suministro Dental</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --azul-cielo: #87CEEB; --azul-oscuro: #1e3a8a; --verde-whatsapp: #25D366; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
-        .product-card { background: white; border-radius: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
+        .product-card { background: white; border-radius: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; transition: 0.3s; }
         .sidebar { position: fixed; left: -100%; top: 0; width: 280px; height: 100%; background: white; z-index: 500; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
         .sidebar.active { left: 0; }
         .overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 400; backdrop-filter: blur(4px); }
@@ -18,7 +18,8 @@
         .modal.active { display: flex; align-items: flex-end; }
         .modal-content { background: white; width: 100%; border-radius: 2.5rem 2.5rem 0 0; padding: 2rem; max-height: 92vh; overflow-y: auto; }
         .input-premium { width: 100%; background: #f8fafc; border: 2px solid #f1f5f9; border-radius: 1rem; padding: 1rem; font-weight: 700; font-size: 0.875rem; outline: none; }
-        .category-btn.active { background-color: var(--azul-cielo); color: white; border-color: var(--azul-cielo); }
+        .category-btn { border: 2px solid #f1f5f9; border-radius: 99px; padding: 0.5rem 1.25rem; text-transform: uppercase; font-size: 10px; font-weight: 900; white-space: nowrap; transition: 0.3s; color: #64748b; }
+        .category-btn.active { background-color: var(--azul-cielo); color: white; border-color: var(--azul-cielo); box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
@@ -42,7 +43,7 @@
                     <button id="zoom-plus" class="w-10 h-10 bg-white rounded-xl text-blue-500 font-black shadow-sm text-xl">+</button>
                 </div>
             </div>
-            <p id="zoom-ficha" class="text-sm text-slate-500 font-medium leading-relaxed bg-slate-50 p-5 rounded-3xl mb-8 border border-slate-100"></p>
+            <p id="zoom-ficha" class="text-sm text-slate-500 font-medium leading-relaxed bg-slate-50 p-5 rounded-3xl mb-8 border border-slate-100 italic"></p>
         </div>
     </div>
 
@@ -52,16 +53,16 @@
             <p class="text-[8px] text-slate-400 font-bold uppercase italic">Menú Principal</p>
         </div>
         <nav class="flex-1 p-6 space-y-2">
-            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm">Inicio</button>
-            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm">Catálogo</button>
-            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm">¿Quiénes somos?</button>
-            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm">Contacto</button>
+            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm italic">Inicio</button>
+            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm italic">Catálogo de Productos</button>
+            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm italic">¿Quiénes somos?</button>
+            <button onclick="toggleMenu()" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 text-blue-900 font-800 text-sm italic">Contacto Directo</button>
         </nav>
         <div class="p-8 border-t border-slate-100 text-center">
-            <p class="text-[9px] text-slate-400 font-black uppercase mb-2">Aliado Comercial</p>
+            <p class="text-[9px] text-slate-400 font-black uppercase mb-2 italic">Aliado Comercial</p>
             <p class="text-[10px] text-blue-900 font-900 uppercase">Laboratorio Dental Especializado</p>
-            <p class="text-[11px] text-slate-400 font-bold uppercase mb-4">Ángel Molina</p>
-            <button onclick="window.open('https://wa.me/584243391197')" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black text-[9px] uppercase">SOLICITAR SERVICIOS</button>
+            <p class="text-[11px] text-slate-400 font-bold uppercase mb-4 tracking-widest italic">Ángel Molina</p>
+            <button onclick="window.open('https://wa.me/584243391197')" class="w-full bg-blue-900 text-white py-4 rounded-xl font-black text-[9px] uppercase shadow-lg">SOLICITAR SERVICIOS</button>
         </div>
     </div>
 
@@ -69,8 +70,8 @@
         <div class="max-w-xl mx-auto flex justify-between items-center mb-4">
             <button onclick="toggleMenu()" class="bg-slate-50 p-3 rounded-2xl"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
             <div class="text-center">
-                <h1 class="text-xl font-800 text-blue-900 uppercase tracking-tighter">Stock<span style="color: var(--azul-cielo)">Dental</span></h1>
-                <p class="text-[7px] tracking-[0.15em] text-slate-400 font-bold uppercase italic text-center">Insumos y Materiales</p>
+                <h1 class="text-xl font-800 text-blue-900 uppercase tracking-tighter italic">Stock<span style="color: var(--azul-cielo)">Dental</span></h1>
+                <p class="text-[7px] tracking-[0.15em] text-slate-400 font-bold uppercase italic">Insumos y Materiales</p>
             </div>
             <button onclick="toggleModal('cart-modal')" class="relative p-3 rounded-2xl text-white shadow-lg" style="background-color: var(--azul-cielo)">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
@@ -79,21 +80,21 @@
         </div>
 
         <div class="max-w-xl mx-auto mb-4 px-4 py-2 rounded-xl border border-white/20" style="background-color: var(--azul-cielo)">
-            <p class="text-[9px] text-white font-bold leading-tight uppercase text-center w-full">
+            <p class="text-[9px] text-white font-bold leading-tight uppercase text-center w-full italic">
                 Pedidos hasta las 12:00 PM se entregan en la tarde. <br>Pedidos después de las 12:00 PM se entregan mañana.
             </p>
         </div>
 
         <div class="max-w-xl mx-auto mb-3 relative">
-            <input type="text" id="search-input" oninput="render()" placeholder="Buscar material..." class="w-full bg-slate-50 rounded-2xl p-4 pl-12 font-bold text-sm outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input type="text" id="search-input" oninput="render()" placeholder="Buscar material (Ivoclar, 3M, Vita...)" class="w-full bg-slate-50 rounded-2xl p-4 pl-12 font-bold text-sm outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
 
         <div class="max-w-xl mx-auto flex gap-2 overflow-x-auto pb-2 no-scrollbar px-1">
-            <button onclick="setCategory('todos')" id="cat-todos" class="category-btn active border-2 border-slate-100 rounded-full px-5 py-2 text-[10px] font-black uppercase whitespace-nowrap transition-all">Todos</button>
-            <button onclick="setCategory('odontologo')" id="cat-odontologo" class="category-btn border-2 border-slate-100 rounded-full px-5 py-2 text-[10px] font-black uppercase whitespace-nowrap transition-all">Odontólogos</button>
-            <button onclick="setCategory('estudiante')" id="cat-estudiante" class="category-btn border-2 border-slate-100 rounded-full px-5 py-2 text-[10px] font-black uppercase whitespace-nowrap transition-all">Estudiantes</button>
-            <button onclick="setCategory('tecnico')" id="cat-tecnico" class="category-btn border-2 border-slate-100 rounded-full px-5 py-2 text-[10px] font-black uppercase whitespace-nowrap transition-all">Técnico Dental</button>
+            <button onclick="setCategory('todos')" id="cat-todos" class="category-btn active">Todos</button>
+            <button onclick="setCategory('odontologo')" id="cat-odontologo" class="category-btn">Odontólogos</button>
+            <button onclick="setCategory('estudiante')" id="cat-estudiante" class="category-btn">Estudiantes</button>
+            <button onclick="setCategory('tecnico')" id="cat-tecnico" class="category-btn">Técnico Dental</button>
         </div>
     </header>
 
@@ -103,7 +104,7 @@
         <div class="modal-content">
             <div class="flex items-center justify-between mb-8">
                 <button onclick="toggleModal('cart-modal')" class="bg-slate-100 text-slate-500 text-[10px] font-black px-4 py-2.5 rounded-xl uppercase">← Volver</button>
-                <h2 class="text-lg font-900 text-blue-900 italic uppercase">Tu Pedido</h2>
+                <h2 class="text-lg font-900 text-blue-900 italic uppercase italic">Tu Pedido</h2>
                 <div class="w-10"></div>
             </div>
 
@@ -119,21 +120,15 @@
                 </select>
 
                 <div class="bg-blue-900 rounded-3xl p-6 shadow-xl">
-                    <p class="text-[12px] text-blue-200 font-900 text-center mb-3 uppercase tracking-widest italic">PAGO MÓVIL</p>
+                    <p class="text-[12px] text-blue-200 font-900 text-center mb-3 uppercase tracking-widest italic italic">PAGO MÓVIL</p>
                     <div class="bg-white rounded-2xl p-5 text-center mb-4">
                         <p class="text-blue-400 font-black text-[9px] uppercase mb-1">Cédula</p>
                         <p class="text-blue-900 font-black text-2xl mb-4 leading-none">V-17.888.104</p>
                         <p class="text-blue-400 font-black text-[9px] uppercase mb-1">Teléfono</p>
                         <p class="text-blue-900 font-black text-xl mb-4 leading-none">0424-339.1197</p>
                         <div class="grid grid-cols-2 gap-3 pt-3 border-t">
-                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer">
-                                <input type="radio" name="bank-select" value="0102" checked onchange="validateForm()">
-                                <span class="text-[10px] font-black text-blue-900 uppercase mt-1">Venezuela</span>
-                            </label>
-                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer">
-                                <input type="radio" name="bank-select" value="0105" onchange="validateForm()">
-                                <span class="text-[10px] font-black text-blue-900 uppercase mt-1">Mercantil</span>
-                            </label>
+                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer"><input type="radio" name="bank-select" value="0102" checked onchange="validateForm()"><span class="text-[10px] font-black text-blue-900 uppercase mt-1">Venezuela</span></label>
+                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer"><input type="radio" name="bank-select" value="0105" onchange="validateForm()"><span class="text-[10px] font-black text-blue-900 uppercase mt-1">Mercantil</span></label>
                         </div>
                     </div>
                     <button onclick="copyPaymentData()" class="w-full bg-sky-400 text-white py-3 rounded-xl font-black text-[10px] uppercase mb-4">📋 Copiar datos de pago</button>
@@ -147,7 +142,7 @@
 
             <div id="cart-list" class="space-y-3 mb-6"></div>
             <div class="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100 flex justify-between items-end">
-                <div class="flex flex-col"><span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Final</span></div>
+                <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Final</span>
                 <span id="modal-total" class="text-3xl font-900 text-blue-900 tracking-tighter">0,00 Bs.</span>
             </div>
             <button id="btn-send" disabled onclick="sendWhatsApp()" class="w-full py-5 rounded-2xl text-white font-black uppercase text-sm shadow-lg disabled:bg-slate-300 transition-all" style="background-color: var(--azul-cielo)">ENVIAR PEDIDO POR WHATSAPP</button>
@@ -155,15 +150,23 @@
     </div>
 
     <script>
-        const tasaActual = 65.00, tasaBCV = 500.00, margen = 0.20;
+        const tasaActual = 65.00, tasaBCV = 50.00, margen = 0.20;
         let currentCategory = 'todos';
         const productos = [
-            { id: 1, name: "Yeso WhipMix T4", costoUSDT: 11, img: "img/yeso-t4.jpg.jpeg", cat: "tecnico", ficha: "Ficha técnica: Alta resistencia y precisión." },
-            { id: 2, name: "Guantes de Nitrilo", costoUSDT: 10, img: "img/guantes.jpg.jpeg", cat: "odontologo", ficha: "Ficha técnica: Libre de látex, alta sensibilidad." },
-            { id: 3, name: "Acrílico Líquido", costoUSDT: 8, img: "img/acrilico.jpg.jpeg", cat: "tecnico", ficha: "Ficha técnica: Autopolimerizable." },
-            { id: 4, name: "Cera Base Tropical", costoUSDT: 9, img: "img/cera-base.jpg.jpeg", cat: "tecnico", ficha: "Ficha técnica: Ideal para climas cálidos." },
-            { id: 5, name: "Resina Compuesta", costoUSDT: 25, img: "img/resina.jpg.jpeg", cat: "odontologo", ficha: "Ficha técnica: Nanohíbrida." },
-            { id: 6, name: "Alginato Cromático", costoUSDT: 12, img: "img/alginato.jpg.jpeg", cat: "estudiante", ficha: "Ficha técnica: Cambio de color por fase." }
+            { id: 1, name: "Ivoclar Vivadent IPS Classic", costoUSDT: 45, img: "https://via.placeholder.com/150", cat: "tecnico", ficha: "Ficha técnica: Cerámica sobre metal de alta estética." },
+            { id: 2, name: "3M ESPE Filtek Z250", costoUSDT: 35, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Resina microhíbrida universal." },
+            { id: 3, name: "Vita VM9 Cerámica", costoUSDT: 48, img: "https://via.placeholder.com/150", cat: "tecnico", ficha: "Ficha técnica: Cerámica de estructura fina para zirconio." },
+            { id: 4, name: "Kulzer Charisma Classic", costoUSDT: 28, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Resina microvidrio de fácil manejo." },
+            { id: 5, name: "Coltene President Alginato", costoUSDT: 15, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Alginato de alta precisión." },
+            { id: 6, name: "Ivoclar Tetric N-Ceram", costoUSDT: 38, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Composite nanohíbrido radiopaco." },
+            { id: 7, name: "3M Scotchbond Universal", costoUSDT: 65, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Adhesivo universal de un solo paso." },
+            { id: 8, name: "Vita Lumin Vacuum", costoUSDT: 40, img: "https://via.placeholder.com/150", cat: "tecnico", ficha: "Ficha técnica: Dientes de acrílico de alta gama." },
+            { id: 9, name: "Yeso WhipMix T4", costoUSDT: 11, img: "https://via.placeholder.com/150", cat: "tecnico", ficha: "Ficha técnica: Yeso tipo 4 extra duro." },
+            { id: 10, name: "Guantes Nitrilo 3M", costoUSDT: 10, img: "https://via.placeholder.com/150", cat: "odontologo", ficha: "Ficha técnica: Alta resistencia química." },
+            { id: 11, name: "Dientes Ivoclar Vivadent", costoUSDT: 25, img: "https://via.placeholder.com/150", cat: "tecnico", ficha: "Ficha técnica: Estética natural garantizada." },
+            { id: 12, name: "Kit Estudiante Coltene", costoUSDT: 85, img: "https://via.placeholder.com/150", cat: "estudiante", ficha: "Ficha técnica: Kit completo para clínica dental." },
+            { id: 13, name: "Fresas de Diamante 3M", costoUSDT: 5, img: "https://via.placeholder.com/150", cat: "estudiante", ficha: "Ficha técnica: Alta capacidad de corte." },
+            { id: 14, name: "Alginato Vita Cromático", costoUSDT: 12, img: "https://via.placeholder.com/150", cat: "estudiante", ficha: "Ficha técnica: Indicador de fraguado por color." }
         ];
         let cart = {};
 
@@ -194,7 +197,7 @@
             container.innerHTML = "";
             productos.filter(p => (p.name.toLowerCase().includes(search)) && (currentCategory === 'todos' || p.cat === currentCategory)).forEach(p => {
                 const qty = cart[p.id] ? cart[p.id].qty : 0;
-                container.innerHTML += `<div class="product-card p-4 flex flex-col"><img src="${p.img}" onclick="openZoom(${p.id})" class="h-28 w-full object-contain mb-3 cursor-pointer"><h3 class="text-[10px] font-bold text-slate-700 mb-2 h-8 overflow-hidden">${p.name}</h3><div class="flex items-center justify-between mb-3"><div class="flex items-center bg-slate-100 rounded-lg p-1"><button onclick="updateQty(${p.id}, -1)" class="w-5 h-5 text-blue-500 font-bold">-</button><span class="w-6 text-center text-[10px] font-black">${qty}</span><button onclick="updateQty(${p.id}, 1)" class="w-5 h-5 text-blue-500 font-bold">+</button></div><span class="text-[10px] font-black text-blue-500">${calcularPrecio(p.costoUSDT).toLocaleString('es-VE')}</span></div></div>`;
+                container.innerHTML += `<div class="product-card p-4 flex flex-col"><img src="${p.img}" onclick="openZoom(${p.id})" class="h-28 w-full object-contain mb-3 cursor-pointer"><h3 class="text-[10px] font-bold text-slate-700 mb-2 h-8 overflow-hidden uppercase italic">${p.name}</h3><div class="flex items-center justify-between mb-3"><div class="flex items-center bg-slate-100 rounded-lg p-1"><button onclick="updateQty(${p.id}, -1)" class="w-5 h-5 text-blue-500 font-bold">-</button><span class="w-6 text-center text-[10px] font-black">${qty}</span><button onclick="updateQty(${p.id}, 1)" class="w-5 h-5 text-blue-500 font-bold">+</button></div><span class="text-[10px] font-black text-blue-500">${calcularPrecio(p.costoUSDT).toLocaleString('es-VE')}</span></div></div>`;
             });
         }
 
@@ -213,7 +216,7 @@
             let subtotal = 0;
             list.innerHTML = Object.values(cart).map(i => {
                 const sub = calcularPrecio(i.costoUSDT) * i.qty; subtotal += sub;
-                return `<div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl text-[11px] font-bold text-slate-500"><span>${i.name} (x${i.qty})</span><div class="flex items-center gap-3"><span>${sub.toLocaleString('es-VE')} Bs.</span><button onclick="removeItem(${i.id})" class="text-red-500 font-black">✕</button></div></div>`;
+                return `<div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl text-[11px] font-bold text-slate-500"><span>${i.name} (x${i.qty})</span><div class="flex items-center gap-3"><span>${sub.toLocaleString('es-VE')} Bs.</span><button onclick="removeItem(${i.id})" class="text-red-500 font-black px-2">✕</button></div></div>`;
             }).join('');
             const envio = (zone.value !== "none") ? parseFloat(zone.value) * tasaBCV : 0;
             document.getElementById('modal-total').innerText = (subtotal + envio).toLocaleString('es-VE') + " Bs.";
@@ -229,7 +232,7 @@
         function copyPaymentData() {
             const bank = document.querySelector('input[name="bank-select"]:checked').value;
             const monto = document.getElementById('modal-total').innerText;
-            navigator.clipboard.writeText(`Cédula: 17888104\nBanco: ${bank}\nTeléfono: 04243391197\nMonto: ${monto}`).then(() => alert("Datos copiados"));
+            navigator.clipboard.writeText(`Cédula: 17888104\nBanco: ${bank}\nTeléfono: 04243391197\nMonto: ${monto}`).then(() => alert("Datos de pago copiados"));
         }
 
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); }
@@ -237,9 +240,12 @@
 
         function sendWhatsApp() {
             const bank = document.querySelector('input[name="bank-select"]:checked').value;
-            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A💰 *Pago:* ${document.getElementById('pay-amount').value} Bs. (Ref: ${document.getElementById('pay-ref').value})%0A🏦 *Banco:* ${bank}%0A%0A`;
+            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A💰 *Pago:* ${document.getElementById('pay-amount').value} Bs. (Ref: ${document.getElementById('pay-ref').value})%0A🏦 *Banco Pago Móvil:* ${bank}%0A%0A`;
             Object.values(cart).forEach(i => msg += `• ${i.name} (x${i.qty})%0A`);
-            msg += `%0A*TOTAL:* ${document.getElementById('modal-total').innerText}`;
+            msg += `%0A*TOTAL A PAGAR:* ${document.getElementById('modal-total').innerText}`;
             window.open(`https://wa.me/584243391197?text=${msg}`);
         }
         render();
+    </script>
+</body>
+</html>
