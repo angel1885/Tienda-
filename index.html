@@ -50,35 +50,19 @@
         </div>
     </div>
 
-    <!-- SIDEBAR CORREGIDO SEGÚN IMAGEN 89793.png -->
+    <!-- SIDEBAR -->
     <div id="sidebar" class="sidebar p-8 flex flex-col">
-        <button onclick="toggleMenu()" class="self-end mb-12 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ CERRAR</button>
-        
-        <div class="mb-8">
-            <h2 class="text-blue-900 font-900 text-2xl uppercase italic tracking-tighter">PIONEROS DIGITALES</h2>
-            <div class="h-1.5 w-20 bg-sky-200 mt-1"></div>
+        <button onclick="toggleMenu()" class="self-end mb-8 text-slate-400 font-bold uppercase text-[10px] bg-slate-50 px-3 py-2 rounded-lg">✕ Cerrar</button>
+        <div class="mb-6"><h2 class="text-blue-900 font-900 text-lg uppercase italic tracking-tighter">Pioneros Digitales</h2><div class="h-1 w-12 bg-sky-300 mt-1"></div></div>
+        <div class="space-y-6">
+            <div><h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">Nuestra Nueva Era</h4><p class="text-[11px] text-slate-500">Somos la primera plataforma diseñada para digitalizar el suministro odontológico.</p></div>
+            <div><h4 class="text-blue-900 font-800 text-xs uppercase mb-1 italic">Misión</h4><p class="text-[11px] text-slate-500">Liderar la transformación digital del sector dental.</p></div>
         </div>
-
-        <div class="space-y-10">
-            <div>
-                <h4 class="text-blue-900 font-800 text-sm uppercase mb-2 italic">QUIENES SOMOS</h4>
-                <p class="text-sm text-slate-500 leading-relaxed">Somos la primera plataforma diseñada para digitalizar el suministro odontológico.</p>
-            </div>
-            <div>
-                <h4 class="text-blue-900 font-800 text-sm uppercase mb-2 italic">MISIÓN</h4>
-                <p class="text-sm text-slate-500 leading-relaxed">Liderar la transformación digital del sector dental.</p>
-            </div>
-            <div>
-                <h4 class="text-blue-900 font-800 text-sm uppercase mb-2 italic">VISIÓN</h4>
-                <p class="text-sm text-slate-500 leading-relaxed">Ser el referente tecnológico para todos los profesionales de la salud dental.</p>
-            </div>
-        </div>
-
-        <div class="mt-auto pt-8 text-center">
-            <p class="text-[10px] text-slate-400 font-black uppercase mb-2 tracking-widest italic">ALIADO COMERCIAL</p>
-            <p class="text-[12px] text-blue-900 font-900 uppercase mb-1 leading-tight">LABORATORIO DENTAL ESPECIALIZADO</p>
-            <p class="text-[12px] text-blue-900 font-900 uppercase mb-6 tracking-widest italic">ÁNGEL MOLINA</p>
-            <button onclick="window.open('https://wa.me/584243391197')" class="w-full bg-[#1e3a8a] text-white py-5 rounded-2xl font-black text-xs uppercase shadow-xl">SOLICITAR SERVICIOS</button>
+        <div class="mt-auto pt-8 border-t border-slate-100 text-center">
+            <p class="text-[9px] text-slate-400 font-black uppercase mb-2 tracking-widest italic">Aliado Comercial</p>
+            <p class="text-[10px] text-blue-900 font-900 uppercase mb-1 leading-tight">Laboratorio Dental Especializado</p>
+            <p class="text-[11px] text-slate-400 font-bold uppercase mb-4 tracking-widest italic">Ángel Molina</p>
+            <button onclick="window.open('https://wa.me/584243391197')" class="w-full bg-blue-900 text-white p-4 rounded-xl font-black text-[9px] uppercase shadow-lg leading-tight">SOLICITAR SERVICIOS</button>
         </div>
     </div>
 
@@ -98,21 +82,25 @@
             </button>
         </div>
 
+        <!-- MARCAS -->
         <div class="max-w-xl mx-auto flex justify-between items-center mb-4 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 italic font-black text-[9px] text-slate-400 uppercase tracking-widest">
             <span>ivoclar</span><span class="text-red-500">3M</span><span style="font-family:serif">VITA</span><span>KULZER</span>
         </div>
 
+        <!-- DELIVERY INFO -->
         <div class="max-w-xl mx-auto mb-4 px-4 py-2 rounded-xl flex items-center gap-3 border border-white/20" style="background-color: var(--azul-cielo)">
             <p class="text-[9px] text-white font-bold leading-tight uppercase italic text-center w-full">
                 Pedidos hasta las 12:00 PM se entregan en la tarde. <br>Pedidos después de las 12:00 PM se entregan en la mañana siguiente.
             </p>
         </div>
 
+        <!-- BUSCADOR -->
         <div class="max-w-xl mx-auto mb-3 relative">
             <input type="text" id="search-input" oninput="render()" placeholder="Buscar material..." class="w-full bg-slate-50 rounded-2xl p-4 pl-12 font-bold text-sm outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-4 top-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
 
+        <!-- LOS 4 BOTONES DE CATEGORÍA -->
         <div class="max-w-xl mx-auto flex gap-2 overflow-x-auto pb-2 no-scrollbar">
             <button onclick="setCategory('todos')" id="cat-todos" class="category-btn active">Todos</button>
             <button onclick="setCategory('odontologo')" id="cat-odontologo" class="category-btn">Odontólogos</button>
@@ -144,7 +132,7 @@
                 </select>
 
                 <div class="bg-blue-900 rounded-3xl p-6 shadow-xl">
-                    <p class="text-[12px] text-blue-200 font-900 text-center mb-3 uppercase tracking-widest italic"><strong>PAGO MÓVIL</strong></p>
+                    <p class="text-[12px] text-blue-200 font-900 text-center mb-3 uppercase tracking-widest italic">PAGO MÓVIL</p>
                     <div class="bg-white rounded-2xl p-5 text-center mb-4">
                         <p class="text-blue-400 font-black text-[9px] uppercase mb-1 italic">Cédula</p>
                         <p class="text-blue-900 font-black text-2xl mb-4 leading-none italic">V-17.888.104</p>
@@ -152,12 +140,14 @@
                         <p class="text-blue-900 font-black text-xl mb-4 italic">0424-339.1197</p>
                         
                         <div class="grid grid-cols-2 gap-3 pt-3 border-t">
-                            <div class="flex flex-col items-center p-2 rounded-xl border">
+                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer">
+                                <input type="radio" name="bank-select" value="0102" checked class="mb-1">
                                 <span class="text-[10px] font-black text-blue-900 uppercase">Venezuela</span>
-                            </div>
-                            <div class="flex flex-col items-center p-2 rounded-xl border">
+                            </label>
+                            <label class="flex flex-col items-center p-2 rounded-xl border cursor-pointer">
+                                <input type="radio" name="bank-select" value="0105" class="mb-1">
                                 <span class="text-[10px] font-black text-blue-900 uppercase">Mercantil</span>
-                            </div>
+                            </label>
                         </div>
                     </div>
                     <button onclick="copyPaymentData()" class="w-full bg-sky-400 text-white py-3 rounded-xl font-black text-[10px] uppercase mb-4 italic">📋 Copiar datos de pago</button>
@@ -231,30 +221,21 @@
             render(); validateForm(); if(document.getElementById('cart-modal').classList.contains('active')) updateCartList();
         }
 
-        function removeItem(id) {
-            delete cart[id];
-            document.getElementById('cart-count').innerText = Object.values(cart).reduce((a, b) => a + b.qty, 0);
-            render(); updateCartList(); validateForm();
-        }
-
         function updateCartList() {
             const list = document.getElementById('cart-list'), zone = document.getElementById('delivery-zone');
             let totalProds = 0;
             list.innerHTML = Object.values(cart).map(i => {
                 const sub = calcularPrecio(i.costoUSDT) * i.qty; totalProds += sub;
-                return `<div class="flex justify-between items-center text-[11px] font-bold text-slate-500 bg-slate-50 p-3 rounded-xl">
-                    <button onclick="removeItem(${i.id})" class="text-red-400 mr-2 font-black">✕</button>
-                    <span class="flex-grow">${i.name} (x${i.qty})</span>
-                    <span>${sub.toLocaleString('es-VE')} Bs.</span>
-                </div>`;
+                return `<div class="flex justify-between items-center text-[11px] font-bold text-slate-500 bg-slate-50 p-3 rounded-xl"><span>${i.name} (x${i.qty})</span><span>${sub.toLocaleString('es-VE')} Bs.</span></div>`;
             }).join('');
             const ship = (zone.value !== "none") ? parseFloat(zone.value) * tasaBCV : 0;
             document.getElementById('modal-total').innerText = (totalProds + ship).toLocaleString('es-VE') + " Bs.";
         }
 
         function copyPaymentData() {
+            const bank = document.querySelector('input[name="bank-select"]:checked').value;
             const monto = document.getElementById('modal-total').innerText;
-            navigator.clipboard.writeText(`Cédula: 17888104\nBancos: Venezuela / Mercantil\nTeléfono: 04243391197\nMonto: ${monto}`).then(() => alert("¡Datos copiados!"));
+            navigator.clipboard.writeText(`Cédula: 17888104\nBanco: ${bank}\nTeléfono: 04243391197\nMonto: ${monto}`).then(() => alert("¡Datos copiados!"));
         }
 
         function validateForm() {
@@ -268,7 +249,8 @@
         function toggleModal(id) { document.getElementById(id).classList.toggle('active'); if(id === 'cart-modal' && document.getElementById(id).classList.contains('active')) updateCartList(); }
         
         function sendWhatsApp() {
-            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A💰 *Pago:* ${document.getElementById('pay-amount').value} Bs. (Ref: ${document.getElementById('pay-ref').value})%0A🏦 *Banco Emisor:* ${document.getElementById('pay-bank').value}%0A%0A`;
+            const bank = document.querySelector('input[name="bank-select"]:checked').value;
+            let msg = `🦷 *PEDIDO STOCKDENTAL*%0A👤 *Cliente:* ${document.getElementById('cust-name').value}%0A💰 *Pago:* ${document.getElementById('pay-amount').value} Bs. (Ref: ${document.getElementById('pay-ref').value})%0A🏦 *Banco:* ${bank}%0A%0A`;
             Object.values(cart).forEach(i => msg += `• ${i.name} (x${i.qty})%0A`);
             msg += `%0A*TOTAL:* ${document.getElementById('modal-total').innerText}`;
             window.open(`https://wa.me/584243391197?text=${msg}`);
